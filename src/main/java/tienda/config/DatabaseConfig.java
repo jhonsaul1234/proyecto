@@ -15,8 +15,8 @@ public class DatabaseConfig {
                 .create()
                 .driverClassName("com.mysql.cj.jdbc.Driver")
                 .url("jdbc:mysql://localhost:3306/store_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC")
-                .username("root")
-                .password("123456")
+                .username("smith")
+                .password("root")
                 .build();
     }
 }

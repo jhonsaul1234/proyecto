@@ -1,98 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tienda.controller.VentaController"
-            prefHeight="600.0" prefWidth="800.0">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: cyan;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda.controller.VentaController">
 
-    <VBox spacing="10" AnchorPane.topAnchor="10.0"
-          AnchorPane.leftAnchor="10.0"
-          AnchorPane.rightAnchor="10.0"
-          AnchorPane.bottomAnchor="10.0">
+    <VBox spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 
-        <!-- Panel Superior - Selección de Productos -->
-        <GridPane hgap="10" vgap="10">
+        <!-- Panel Inferior - Totales y Botones -->
+        <HBox alignment="CENTER_RIGHT" spacing="10">
             <padding>
-                <Insets bottom="10"/>
+                <Insets top="10" />
             </padding>
 
-            <Label text="Producto:"
-                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <ComboBox fx:id="cboProductos"
-                      promptText="Seleccione un producto"
-                      prefWidth="300.0"
-                      GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <Label text="Precio:"
-                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtPrecio"
-                       editable="false"
-                       prefWidth="150.0"
-                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Label text="Cantidad:"
-                   GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-            <Spinner fx:id="spnCantidad"
-                     prefWidth="100.0"
-                     GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-            <Label text="Importe:"
-                   GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-            <TextField fx:id="txtImporte"
-                       editable="false"
-                       prefWidth="150.0"
-                       GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-            <Button fx:id="btnAgregar"
-                    text="Agregar al Carrito"
-                    onAction="#handleAgregarProducto"
-                    prefWidth="150.0"
-                    GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-        </GridPane>
+            <Button fx:id="btnQuitar" onAction="#handleQuitarProducto" prefWidth="150.0" text="Quitar Producto" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Label fx:id="lblTotal" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="S/. 0.00" />
+
+            <Button fx:id="btnFinalizar" onAction="#handleFinalizarVenta" prefWidth="150.0" text="Finalizar Venta" />
+        </HBox>
 
         <!-- Tabla de Carrito -->
         <TableView fx:id="tblCarrito" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="colProducto"
-                             text="Producto"
-                             prefWidth="300"/>
-                <TableColumn fx:id="colCantidad"
-                             text="Cantidad"
-                             prefWidth="100"/>
-                <TableColumn fx:id="colPrecio"
-                             text="Precio Unit."
-                             prefWidth="150"/>
-                <TableColumn fx:id="colSubtotal"
-                             text="Subtotal"
-                             prefWidth="150"/>
+                <TableColumn fx:id="colProducto" prefWidth="300" text="Producto" />
+                <TableColumn fx:id="colCantidad" prefWidth="100" text="Cantidad" />
+                <TableColumn fx:id="colPrecio" prefWidth="150" text="Precio Unit." />
+                <TableColumn fx:id="colSubtotal" prefWidth="150" text="Subtotal" />
             </columns>
             <placeholder>
-                <Label text="No hay productos en el carrito"/>
+                <Label text="No hay productos en el carrito" />
             </placeholder>
         </TableView>
 
-        <!-- Panel Inferior - Totales y Botones -->
-        <HBox spacing="10" alignment="CENTER_RIGHT">
+        <!-- Panel Superior - Selección de Productos -->
+        <GridPane hgap="10" vgap="10">
             <padding>
-                <Insets top="10"/>
+                <Insets bottom="10" />
             </padding>
 
-            <Button fx:id="btnQuitar"
-                    text="Quitar Producto"
-                    onAction="#handleQuitarProducto"
-                    prefWidth="150.0"/>
+            <Label text="Producto:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="cboProductos" prefWidth="300.0" promptText="Seleccione un producto" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Precio:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="txtPrecio" editable="false" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Cantidad:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Spinner fx:id="spnCantidad" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Importe:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="txtImporte" editable="false" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="btnAgregar" onAction="#handleAgregarProducto" prefWidth="150.0" text="Agregar al Carrito" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
 
-            <Region HBox.hgrow="ALWAYS"/>
-
-            <Label fx:id="lblTotal"
-                   text="S/. 0.00"
-                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-
-            <Button fx:id="btnFinalizar"
-                    text="Finalizar Venta"
-                    onAction="#handleFinalizarVenta"
-                    prefWidth="150.0"
-                    style="-fx-base: #4CAF50; -fx-text-fill: white;"/>
-        </HBox>
     </VBox>
 </AnchorPane>
